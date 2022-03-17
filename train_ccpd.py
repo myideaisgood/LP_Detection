@@ -54,8 +54,8 @@ for key,value in sorted((args.__dict__).items()):
     print('\t%15s:\t%s' % (key, value))
     logging.info('\t%15s:\t%s' % (key, value))
 
-train_dataset = CCPD_Dataset(DATA_DIR, 'train_small', imgSize=IMGSIZE)
-test_dataset = CCPD_Dataset(DATA_DIR, 'val_small', imgSize=IMGSIZE)
+train_dataset = CCPD_Dataset(DATA_DIR, 'train', imgSize=IMGSIZE)
+test_dataset = CCPD_Dataset(DATA_DIR, 'val', imgSize=IMGSIZE)
 
 train_dataloader = DataLoader(
     dataset=train_dataset,
