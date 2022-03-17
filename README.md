@@ -29,3 +29,15 @@ conda env create -f lpdetection.yml
                 ├──> val.txt
                 └──> test.txt
 ```
+
+# TO DO
+
+1. 다른 Dataset 도 가능하게 구축
+
+2. 현재는 dataset resize만 함 ==> dataset crop + augmentation 추가
+
+3. Vehicle detection 이랑 연동 ==> https://github.com/MaryamBoneh/Vehicle-Detection
+
+4. Image size 448 고정말고 다른 image size 도 가능하게 추가 수정
+
+등등?
