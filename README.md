@@ -30,6 +30,10 @@ conda env create -f lpdetection.yml
                 └──> test.txt
 ```
 
+# 주의사항
+val.txt << 이게 실제 test 데이터셋
+test.txt << 이건 challenging 데이터셋 
+
 # TO DO
 
 1. 다른 Dataset 도 가능하게 구축
