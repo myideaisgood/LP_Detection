@@ -30,17 +30,17 @@ conda env create -f lpdetection.yml
 ```
 
 # 주의사항
-val.txt << 이게 실제 test 데이터셋
-test.txt << 이건 challenging 데이터셋 
+val.txt << 이게 실제 test 데이터셋  
+test.txt << 이건 challenging 데이터셋  
 
 # Config
-IMPORTANT!!!!!!!!!!!
-중국번호판 << batch_max_length=7
-한국번호판 << batch_max_length=8
+IMPORTANT!!!!!!!!!!!  
+중국번호판 << batch_max_length=7  
+한국번호판 << batch_max_length=8  
 
-imgH, imgW -> input image 를 얼마로 resize 할지
-batch_max_length -> output word의 max length
-pad_image -> image resize 할 때 padding 할지 말지
+imgH, imgW -> input image 를 얼마로 resize 할지  
+batch_max_length -> output word의 max length  
+pad_image -> image resize 할 때 padding 할지 말지  
 
-num_fiducial -> STN 할 때 point 몇 개 사용할지
-img_color -> Gray or RGB
+num_fiducial -> STN 할 때 point 몇 개 사용할지  
+img_color -> Gray or RGB  
