@@ -88,7 +88,8 @@ converter = CTCLabelConverter(chars)
 args.num_class = len(converter.character)
 
 train_dataset = CCPD_Recognition_Dataset(DATA_DIR, 'train', IMG_COLOR)
-test_dataset = CCPD_Recognition_Dataset(DATA_DIR, 'test', IMG_COLOR)
+test_dataset = CCPD_Recognition_Dataset(DATA_DIR, 'val', IMG_COLOR)
+challenge_dataset = CCPD_Recognition_Dataset(DATA_DIR, 'test', IMG_COLOR)
 
 Collate = AlignCollate(IMGH, IMGW, PAD)
 
@@ -109,6 +110,16 @@ test_dataloader = DataLoader(
     drop_last=False,
     collate_fn=Collate
 )
+
+challenge_dataloader = DataLoader(
+    dataset=challenge_dataset,
+    batch_size=BATCH_SIZE,
+    num_workers=NUM_WORKERS,
+    shuffle=False,
+    drop_last=False,
+    collate_fn=Collate
+)
+
 
 # Set up GPU
 os.environ['CUDA_DEVICE_ORDER'] = 'PCI_BUS_ID'
@@ -206,6 +217,10 @@ for epoch_idx in range(init_epoch+1, N_EPOCHS):
         test_acc, correct_sample, total_samples, avg_distance = eval(network, test_dataloader, device, converter, BATCH_MAX_LENGTH)
 
         logging.info('====== Evaluation Accuracy : %.1f  [%d/%d]   Edit Distance : %.1f' % (test_acc*100, correct_sample, total_samples, avg_distance))
+        
+        challenge_acc, c_correct_sample, c_total_samples, c_avg_distance = eval(network, challenge_dataloader, device, converter, BATCH_MAX_LENGTH)
+
+        logging.info('====== Challenge Accuracy : %.1f  [%d/%d]   Edit Distance : %.1f' % (challenge_acc*100, c_correct_sample, c_total_samples, c_avg_distance))
 
         if test_acc > best_metric:
 

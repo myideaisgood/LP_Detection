@@ -93,7 +93,7 @@ if __name__ == '__main__':
     converter = CTCLabelConverter(chars)
     args.num_class = len(converter.character)
 
-    test_dataset = CCPD_Recognition_Dataset(DATA_DIR, 'test', IMG_COLOR)
+    test_dataset = CCPD_Recognition_Dataset(DATA_DIR, 'val', IMG_COLOR)
     Collate = AlignCollate(IMGH, IMGW, PAD)
 
     test_dataloader = DataLoader(
