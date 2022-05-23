@@ -55,14 +55,14 @@ conda env create -f lpdetection.yml
 ```
 
 # 각 Python 파일 설명
-config.py -> configuration 조절
-evaluate_jeju.py -> 제주도 데이터셋에 대해 evaluate (evaluate 보다는 inference)
-evaluate.py -> CCPD / KorLP 에 evaluate
-inference.py -> GT 없는 데이터셋에 대해 inference
-kor_char_information.py -> preprocess 한 한글 글자 결과
-model.py -> 모델
-save_failure.py -> Evaluation 결과 틀린 이미지들 저장
-train.py -> CCPD/ KorLP 학습
+config.py -> configuration 조절  
+evaluate_jeju.py -> 제주도 데이터셋에 대해 evaluate (evaluate 보다는 inference)  
+evaluate.py -> CCPD / KorLP 에 evaluate  
+inference.py -> GT 없는 데이터셋에 대해 inference  
+kor_char_information.py -> preprocess 한 한글 글자 결과  
+model.py -> 모델  
+save_failure.py -> Evaluation 결과 틀린 이미지들 저장  
+train.py -> CCPD/ KorLP 학습  
 
 ```
 학습진행 : train_ccpd.py    or   train_kor.py
