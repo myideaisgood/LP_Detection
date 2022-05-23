@@ -15,9 +15,21 @@ from utils.datatransformer import AlignCollate
 from utils.helpers import *
 from utils.CTCConverter import *
 
-chars = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '가', '거', '고', '구', '나', '너', '노', '누', '다', '더', '도', '두', '라', '러', 
-        '로', '루', '마', '머', '모', '무', '바', '버', '보', '부', '사', '서', '소', '수', '시', '아', '어', '오', '우', '육', '자', '저', '조', 
-        '주', '하', '허', '호', '히']
+province = ['대구서', '동대문', '미추홀', '서대문', '영등포', '인천서', '인천중',
+                    '강남', '강서', '강원', '경기', '경남', '경북', '계양', '고양', '관악', '광명', '광주', '구로', '금천', '김포', '남동', 
+                    '대구', '대전', '동작', '부천', '부평', '서울', '서초', '안산', '안양', '양천', '연수', '용산', '인천', '전남', '전북', 
+                    '충남', '충북', '영']
+
+province_replace = ['괅', '놝', '돩', '랅', '맑', '밝', '삵', '앍', '잙', '찱',
+                    '괉', '놡', '돭', '랉', '맕', '밡', '삹', '앑', '잝', '찵',
+                    '괋', '놣', '돯', '뢇', '맗', '밣', '삻', '앓', '잟', '찷',
+                    '괇', '놟', '돫', '뢃', '맓', '밟', '삷', '앏', '잛', '찳']
+
+chars = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '가', '거', '고', '구', '나', '너', '노', '누', '다', '더', '도', '두', 
+        '라', '러', '로', '루', '마', '머', '모', '무', '바', '배', '버', '보', '부', '사', '서', '소', '수', '시', '아', '어', '오', 
+        '우', '육', '자', '저', '조', '주', '지', '차', '카', '타', '파', '하', '허', '호', '히']
+
+chars = chars + province_replace
 
 ######### Configuration #########
 ######### Configuration #########
@@ -197,7 +209,7 @@ for epoch_idx in range(init_epoch+1, N_EPOCHS):
         if epoch_idx % TRAIN_ACC_EVERY == 0:
             train_acc = train_correct_samples / total_train_samples
             train_avg_distance /= total_train_samples
-            logging.info('[Epoch %d/%d] Loss = %.4f   Train Accuracy : %.1f [%d/%d]   Train Distance : %.1f' % (epoch_idx, N_EPOCHS, losses.avg(), train_acc*100, train_correct_samples, total_train_samples, train_avg_distance))
+            logging.info('[Epoch %d/%d] Loss = %.4f   Train Accuracy : %.1f [%d/%d]   Train Distance : %.2f' % (epoch_idx, N_EPOCHS, losses.avg(), train_acc*100, train_correct_samples, total_train_samples, train_avg_distance))
         else:
             logging.info('[Epoch %d/%d] Loss = %.4f ' % (epoch_idx, N_EPOCHS, losses.avg()))
 
@@ -205,7 +217,7 @@ for epoch_idx in range(init_epoch+1, N_EPOCHS):
 
         test_acc, correct_sample, total_samples, avg_distance = eval(network, test_dataloader, device, converter, BATCH_MAX_LENGTH)
 
-        logging.info('====== Evaluation Accuracy : %.1f  [%d/%d]   Edit Distance : %.1f' % (test_acc*100, correct_sample, total_samples, avg_distance))
+        logging.info('====== Evaluation Accuracy : %.1f  [%d/%d]   Edit Distance : %.2f' % (test_acc*100, correct_sample, total_samples, avg_distance))
 
         if test_acc > best_metric:
 
@@ -221,7 +233,7 @@ for epoch_idx in range(init_epoch+1, N_EPOCHS):
 
             logging.info('Best Model Saved')
 
-        logging.info('====== Best Accuracy = %.1f   Best Distance = %.1f' % (best_metric*100, best_distance))
+        logging.info('====== Best Accuracy = %.1f   Best Distance = %.2f' % (best_metric*100, best_distance))
 
     if epoch_idx % SAVE_EVERY == 0:
 

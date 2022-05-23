@@ -34,3 +34,20 @@ def filter_parameter(model):
         params_num.append(np.prod(p.size()))
     
     return filtered_parameters
+
+def encode_province(text, province, province_replace):
+
+    for idx in range(len(province)):
+        prov = province[idx]
+        if prov in text:
+            text = text.replace(prov, province_replace[idx])
+
+    return text
+
+def decode_province(text, province, province_replace):
+
+    for idx in range(len(province)):
+        prov = province_replace[idx]
+        if prov in text:
+            text = text.replace(prov, province[idx])
+    return text

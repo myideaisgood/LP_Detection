@@ -208,7 +208,7 @@ for epoch_idx in range(init_epoch+1, N_EPOCHS):
         if epoch_idx % TRAIN_ACC_EVERY == 0:
             train_acc = train_correct_samples / total_train_samples
             train_avg_distance /= total_train_samples
-            logging.info('[Epoch %d/%d] Loss = %.4f   Train Accuracy : %.1f [%d/%d]   Train Distance : %.1f' % (epoch_idx, N_EPOCHS, losses.avg(), train_acc*100, train_correct_samples, total_train_samples, train_avg_distance))
+            logging.info('[Epoch %d/%d] Loss = %.4f   Train Accuracy : %.1f [%d/%d]   Train Distance : %.2f' % (epoch_idx, N_EPOCHS, losses.avg(), train_acc*100, train_correct_samples, total_train_samples, train_avg_distance))
         else:
             logging.info('[Epoch %d/%d] Loss = %.4f ' % (epoch_idx, N_EPOCHS, losses.avg()))
 
@@ -216,11 +216,11 @@ for epoch_idx in range(init_epoch+1, N_EPOCHS):
 
         test_acc, correct_sample, total_samples, avg_distance = eval(network, test_dataloader, device, converter, BATCH_MAX_LENGTH)
 
-        logging.info('====== Evaluation Accuracy : %.1f  [%d/%d]   Edit Distance : %.1f' % (test_acc*100, correct_sample, total_samples, avg_distance))
+        logging.info('====== Evaluation Accuracy : %.1f  [%d/%d]   Edit Distance : %.2f' % (test_acc*100, correct_sample, total_samples, avg_distance))
         
         challenge_acc, c_correct_sample, c_total_samples, c_avg_distance = eval(network, challenge_dataloader, device, converter, BATCH_MAX_LENGTH)
 
-        logging.info('====== Challenge Accuracy : %.1f  [%d/%d]   Edit Distance : %.1f' % (challenge_acc*100, c_correct_sample, c_total_samples, c_avg_distance))
+        logging.info('====== Challenge Accuracy : %.1f  [%d/%d]   Edit Distance : %.2f' % (challenge_acc*100, c_correct_sample, c_total_samples, c_avg_distance))
 
         if test_acc > best_metric:
 
@@ -236,7 +236,7 @@ for epoch_idx in range(init_epoch+1, N_EPOCHS):
 
             logging.info('Best Model Saved')
 
-        logging.info('====== Best Accuracy = %.1f   Best Distance = %.1f' % (best_metric*100, best_distance))
+        logging.info('====== Best Accuracy = %.1f   Best Distance = %.2f' % (best_metric*100, best_distance))
 
     if epoch_idx % SAVE_EVERY == 0:
 
