@@ -77,13 +77,13 @@ test.txt << 이건 challenging 데이터셋
 # Config
 IMPORTANT!!!!!!!!!!!  
 중국번호판 << batch_max_length=7  
-한국번호판 << batch_max_length=8  
+한국번호판 << batch_max_length=9
 
-imgH, imgW -> input image 를 얼마로 resize 할지 (Default 64/200)
-batch_max_length -> output word의 max length  (!!!! Important !!! 중국번호판=7, 한국번호판=9)
-pad_image -> image resize 할 때 padding 할지 말지 (Default False)
+imgH, imgW -> input image 를 얼마로 resize 할지 (Default 64/200)   
+batch_max_length -> output word의 max length  (!!!! Important !!! 중국번호판=7, 한국번호판=9)   
+pad_image -> image resize 할 때 padding 할지 말지 (Default False)   
+   
+Transformation / FeatureExtraction / SequenceModeling / Prediction -> Default : TPS / ResNet / BiLSTM / CTC   
 
-Transformation / FeatureExtraction / SequenceModeling / Prediction -> Default : TPS / ResNet / BiLSTM / CTC
-
-num_fiducial -> STN 할 때 point 몇 개 사용할지  (Default 8)
-img_color -> Gray or RGB
+num_fiducial -> STN 할 때 point 몇 개 사용할지  (Default 8)   
+img_color -> Gray or RGB   
