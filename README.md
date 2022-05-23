@@ -64,9 +64,10 @@ model.py -> 모델
 save_failure.py -> Evaluation 결과 틀린 이미지들 저장
 train.py -> CCPD/ KorLP 학습
 
+'''
 학습진행 : train_ccpd.py    or   train_kor.py
 Evaluation 진행 : evaluate.py
-
+'''
 
 # 주의사항
 CCPD 에서
